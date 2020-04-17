@@ -12,6 +12,7 @@ using Morgenmadsbuffeten.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Morgenmadsbuffeten.Models;
 
 namespace Morgenmadsbuffeten
 {
@@ -33,6 +34,16 @@ namespace Morgenmadsbuffeten
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
+
+            //All policies described here
+            services.AddAuthorization(options =>
+            {
+
+                options.AddPolicy("ReceptionEmployee", policyBuilder => policyBuilder.RequireClaim(HotelClaims.Receptionist, HotelClaims.True));
+                options.AddPolicy("RestaurantEmployee", policyBuilder => policyBuilder.RequireClaim(HotelClaims.Server, HotelClaims.True));
+                options.AddPolicy("KitchenEmployee", policyBuilder => policyBuilder.RequireClaim(HotelClaims.Cook, HotelClaims.True));
+            });
+
             services.AddRazorPages();
         }
 
