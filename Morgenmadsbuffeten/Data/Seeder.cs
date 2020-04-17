@@ -11,7 +11,7 @@ namespace Morgenmadsbuffeten.Data
     public class Seeder
     {
         // Should maybe be async, with awaits?
-        public static async void SeedAdmin(UserManager<IdentityUser> userManager)
+        public static void SeedAdmin(UserManager<IdentityUser> userManager)
         {
             const string adminEmail = "Admin@Hotel";
             const string adminPassword = "Lukmigind1!";
@@ -29,7 +29,8 @@ namespace Morgenmadsbuffeten.Data
                 if (result.Succeeded)
                 {
                     var adminClaim = new Claim(HotelClaims.Admin, HotelClaims.True);
-                    await userManager.AddClaimAsync(user, adminClaim);
+                    var claimResult = userManager.AddClaimAsync(user, adminClaim);
+                    claimResult.Wait();
                 }
             }
         }
@@ -51,7 +52,7 @@ namespace Morgenmadsbuffeten.Data
         }
 
 
-        public static async void SeedServer(UserManager<IdentityUser> userManager)
+        public static void SeedServer(UserManager<IdentityUser> userManager)
         {
             const string serverEmail = "Server@Hotel";
             const string serverPassword = "Lukmigind1!";
@@ -69,13 +70,16 @@ namespace Morgenmadsbuffeten.Data
                 if (result.Succeeded)
                 {
                     var serverClaim = new Claim(HotelClaims.Server, HotelClaims.True);
-                    await userManager.AddClaimAsync(user, serverClaim);
+                    var serverClaimResult = userManager.AddClaimAsync(user, serverClaim);
+                    serverClaimResult.Wait();
 
                     var cookClaim = new Claim(HotelClaims.Cook, HotelClaims.False);
-                    await userManager.AddClaimAsync(user, cookClaim);
+                    var cookClaimResult = userManager.AddClaimAsync(user, cookClaim);
+                    cookClaimResult.Wait();
 
                     var receptionistClaim = new Claim(HotelClaims.Receptionist, HotelClaims.False);
-                    await userManager.AddClaimAsync(user, receptionistClaim);
+                    var receptionistClaimResult = userManager.AddClaimAsync(user, receptionistClaim);
+                    receptionistClaimResult.Wait();
                 }
             }
         }
@@ -98,13 +102,16 @@ namespace Morgenmadsbuffeten.Data
                 if (result.Succeeded)
                 {
                     var serverClaim = new Claim(HotelClaims.Server, HotelClaims.False);
-                    await userManager.AddClaimAsync(user, serverClaim);
+                    var serverClaimResult = userManager.AddClaimAsync(user, serverClaim);
+                    serverClaimResult.Wait();
 
                     var cookClaim = new Claim(HotelClaims.Cook, HotelClaims.True);
-                    await userManager.AddClaimAsync(user, cookClaim);
+                    var cookClaimResult = userManager.AddClaimAsync(user, cookClaim);
+                    cookClaimResult.Wait();
 
                     var receptionistClaim = new Claim(HotelClaims.Receptionist, HotelClaims.False);
-                    await userManager.AddClaimAsync(user, receptionistClaim);
+                    var receptionistClaimResult = userManager.AddClaimAsync(user, receptionistClaim);
+                    receptionistClaimResult.Wait();
                 }
             }
         }
@@ -127,13 +134,16 @@ namespace Morgenmadsbuffeten.Data
                 if (result.Succeeded)
                 {
                     var serverClaim = new Claim(HotelClaims.Server, HotelClaims.False);
-                    await userManager.AddClaimAsync(user, serverClaim);
+                    var serverClaimResult = userManager.AddClaimAsync(user, serverClaim);
+                    serverClaimResult.Wait();
 
                     var cookClaim = new Claim(HotelClaims.Cook, HotelClaims.False);
-                    await userManager.AddClaimAsync(user, cookClaim);
+                    var cookClaimResult = userManager.AddClaimAsync(user, cookClaim);
+                    cookClaimResult.Wait();
 
                     var receptionistClaim = new Claim(HotelClaims.Receptionist, HotelClaims.True);
-                    await userManager.AddClaimAsync(user, receptionistClaim);
+                    var receptionistClaimResult = userManager.AddClaimAsync(user, receptionistClaim);
+                    receptionistClaimResult.Wait();
                 }
             }
         }
