@@ -21,10 +21,12 @@ namespace Morgenmadsbuffeten.Controllers
             return View();
         }
 
+        /*
         [HttpPost]
         public async Task<IActionResult> CheckInGuests()
         {
             return View();
         }
+        */
     }
 }

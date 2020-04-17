@@ -31,14 +31,14 @@ namespace Morgenmadsbuffeten
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
 
             //All policies described here
             services.AddAuthorization(options =>
             {
-
+                options.AddPolicy("IsAdmin", policyBuilder => policyBuilder.RequireClaim(HotelClaims.Admin, HotelClaims.True));
                 options.AddPolicy("ReceptionEmployee", policyBuilder => policyBuilder.RequireClaim(HotelClaims.Receptionist, HotelClaims.True));
                 options.AddPolicy("RestaurantEmployee", policyBuilder => policyBuilder.RequireClaim(HotelClaims.Server, HotelClaims.True));
                 options.AddPolicy("KitchenEmployee", policyBuilder => policyBuilder.RequireClaim(HotelClaims.Cook, HotelClaims.True));
@@ -48,7 +48,7 @@ namespace Morgenmadsbuffeten
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, UserManager<IdentityUser> userManager)
         {
             if (env.IsDevelopment())
             {
@@ -68,6 +68,8 @@ namespace Morgenmadsbuffeten
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            Seeder.SeedAdmin(userManager);
 
             app.UseEndpoints(endpoints =>
             {

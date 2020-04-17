@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewData["Title"] = "EditUserClaims";
+}
+
+@model Morgenmadsbuffeten.Models.HotelClaimsViewModel
+
+@{
+    var userId = Model.UserId;
+    var userName = Model.UserName;
+    var listOfClaims = Model.UserOwnedClaims;
+}
+
+<h2>@userName</h2>
+
+<form asp-action="EditUserClaims" method="post">
+    <input type="hidden" asp-for="UserId" />
+    <div class="Choice">
+        @for (int i = 0; i < listOfClaims.Count; i++)
+        {
+            <div>
+                <input type="hidden" asp-for="UserOwnedClaims[i].ClaimType" />
+                <input class="ChoiceInner" type="checkbox" asp-for="UserOwnedClaims[i].HasClaim" />
+                <label class="ChoiceInner" asp-for="UserOwnedClaims[i].HasClaim">@listOfClaims[i].ClaimType</label>
+            </div>
+        }
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Update" class="btn btn-primary" />
+    </div>
+</form>
