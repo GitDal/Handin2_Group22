@@ -1,0 +1,64 @@
+﻿@model Morgenmadsbuffeten.Models.KitchenOverviewViewModel
+
+@{
+    ViewData["Title"] = "ShowOverview";
+    var expected = Model.ExpectedGuests;
+    var checkedIn = Model.CheckedInAmount;
+    var notCheckedIn = Model.NotCheckedInAmount;
+}
+
+<h1>ShowOverview</h1>
+
+@* Expected amounts *@
+<table class="table table-bordered table-striped">
+    <thead>
+    <tr>
+        <td>@Html.DisplayNameFor(m => m.ExpectedGuests.TotalAmount)</td>
+        <td>@Html.DisplayNameFor(m => m.ExpectedGuests.NumberOfAdults)</td>
+        <td>@Html.DisplayNameFor(m => m.ExpectedGuests.NumberOfChildren)</td>
+    </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@expected.TotalAmount</td>
+            <td>@expected.NumberOfAdults</td>
+            <td>@expected.NumberOfChildren</td>
+        </tr>
+    </tbody>
+</table>
+
+@* Checked-In amounts *@
+<table class="table table-bordered table-striped">
+    <thead>
+    <tr>
+        <td>@Html.DisplayNameFor(m => m.CheckedInAmount.TotalAmount)</td>
+        <td>@Html.DisplayNameFor(m => m.CheckedInAmount.AdultsAmount)</td>
+        <td>@Html.DisplayNameFor(m => m.CheckedInAmount.ChildrenAmount)</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>@checkedIn.TotalAmount</td>
+        <td>@checkedIn.AdultsAmount</td>
+        <td>@checkedIn.ChildrenAmount</td>
+    </tr>
+    </tbody>
+</table>
+
+@* Not Checked-In amounts *@
+<table class="table table-bordered table-striped">
+    <thead>
+    <tr>
+        <td>@Html.DisplayNameFor(m => m.NotCheckedInAmount.TotalAmount)</td>
+        <td>@Html.DisplayNameFor(m => m.NotCheckedInAmount.AdultsAmount)</td>
+        <td>@Html.DisplayNameFor(m => m.NotCheckedInAmount.ChildrenAmount)</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>@notCheckedIn.TotalAmount</td>
+        <td>@notCheckedIn.AdultsAmount</td>
+        <td>@notCheckedIn.ChildrenAmount</td>
+    </tr>
+    </tbody>
+</table>

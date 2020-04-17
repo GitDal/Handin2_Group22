@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Morgenmadsbuffeten.Data.DBModels;
 
 namespace Morgenmadsbuffeten.Controllers
 {
@@ -10,6 +12,13 @@ namespace Morgenmadsbuffeten.Controllers
     //[Authorize("IsWaiter")]
     public class RestaurantController : Controller
     {
+        private readonly DbContext _context;
+
+        public RestaurantController(DbContext context)
+        {
+            _context = context;
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -18,13 +27,26 @@ namespace Morgenmadsbuffeten.Controllers
         /* Check-in guests for breakfast (room-number, amount of adults & children)*/
         public IActionResult CheckInGuests()
         {
-            return View();
+            var vm = new CheckedIn();
+
+            return View(vm);
         }
 
         /*
         [HttpPost]
-        public async Task<IActionResult> CheckInGuests()
+        public async Task<IActionResult> CheckInGuests(CheckedIn newEntry)
         {
+            if (ModelState.IsValid)
+            {
+                var result = _context.AddAsync<CheckedIn>(newEntry);
+                await result;
+                
+                if (result.IsCompletedSuccessfully)
+                {
+                    return RedirectToAction(nameof(Index));
+                }
+            }
+
             return View();
         }
         */
