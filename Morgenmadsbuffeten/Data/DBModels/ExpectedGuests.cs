@@ -9,8 +9,11 @@ namespace Morgenmadsbuffeten.Data.DBModels
 {
     public class ExpectedGuests
     {
+        [Display(Name = "Total Amount")]
         public int TotalAmount { get; set; }
+        [Display(Name = "Number of Adults")]
         public int NumberOfAdults { get; set; }
+        [Display(Name = "Number of Children")]
         public int NumberOfChildren { get; set; }
 
         [DataType(DataType.Date)]

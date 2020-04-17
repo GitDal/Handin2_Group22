@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Morgenmadsbuffeten.Controllers
 {
@@ -11,6 +12,13 @@ namespace Morgenmadsbuffeten.Controllers
     //[Authorize("IsReceptionist")]
     public class ReceptionController : Controller
     {
+        private readonly DbContext _context;
+
+        public ReceptionController(DbContext context)
+        {
+            _context = context;
+        }
+
         public IActionResult Index()
         {
             return View();
