@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Morgenmadsbuffeten.Data.DBModels.ExpectedGuests>
+﻿@model IEnumerable<Morgenmadsbuffeten.Data.DBModels.CheckedIn>
 
 @{
     ViewData["Title"] = "ListRestaurantCheckIns";
@@ -10,7 +10,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.TotalAmount)
+                @Html.DisplayNameFor(model => model.RoomNumber)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.NumberOfAdults)
@@ -28,7 +28,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.TotalAmount)
+                @Html.DisplayFor(modelItem => item.RoomNumber)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.NumberOfAdults)
