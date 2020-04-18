@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewData["Title"] = "Reception";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div>
+    <br />
+    <h6><b>Indicate Expected Guests</b></h6>
+    <form asp-action="IndicateExpectedGuests" method="get">
+        <div class="form-group">
+            <input type="submit" value="Indicate" class="btn btn-primary" />
+        </div>
+    </form>
+    <br />
+    <h6><b>List Restaurant CheckIns</b></h6>
+    <form asp-action="ListRestaurantCheckIns" method="get">
+        <div class="form-group">
+            <label class="control-label">Date:</label>
+            <input type="date" name="datetime" class="form-control col-md-6"/>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Search" class="btn btn-primary"/>
+        </div>
+    </form>
+</div>
+

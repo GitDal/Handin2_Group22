@@ -44,6 +44,7 @@ namespace Morgenmadsbuffeten.Controllers
 
                 if (result.IsCompletedSuccessfully)
                 {
+                    _context.SaveChanges();
                     return RedirectToAction(nameof(Index));
                 }
             }

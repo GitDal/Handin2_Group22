@@ -22,7 +22,7 @@ namespace Morgenmadsbuffeten.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return RedirectToAction(nameof(ShowOverview));
         }
 
         /* Given date, show guest-information (expected amount, checked-in amount, etc.) */
