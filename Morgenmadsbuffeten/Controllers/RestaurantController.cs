@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Morgenmadsbuffeten.Data;
 using Morgenmadsbuffeten.Data.DBModels;
 
 namespace Morgenmadsbuffeten.Controllers
@@ -12,9 +13,9 @@ namespace Morgenmadsbuffeten.Controllers
     //[Authorize("IsWaiter")]
     public class RestaurantController : Controller
     {
-        private readonly DbContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public RestaurantController(DbContext context)
+        public RestaurantController(ApplicationDbContext context)
         {
             _context = context;
         }
