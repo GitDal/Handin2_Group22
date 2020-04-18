@@ -40,6 +40,8 @@ namespace Morgenmadsbuffeten.Controllers
         {
             if (ModelState.IsValid)
             {
+                newEntry.Date = DateTime.Now.Date;
+
                 var result = _context.AddAsync<CheckedIn>(newEntry);
                 await result;
 

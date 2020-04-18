@@ -9,7 +9,7 @@ namespace Morgenmadsbuffeten.Models
 {
     public class KitchenOverviewViewModel
     {
-        public KitchenOverviewViewModel(ExpectedGuests expectedGuestsInfo ,List<CheckedIn> checkedInEntries)
+        public KitchenOverviewViewModel(ExpectedGuests expectedGuestsInfo, List<CheckedIn> checkedInEntries)
         {
             ExpectedGuests = expectedGuestsInfo;
 

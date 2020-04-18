@@ -23,19 +23,23 @@ namespace Morgenmadsbuffeten.Controllers
 
         public IActionResult Index()
         {
-            DateTime datetime = DateTime.Now;
-            return RedirectToAction(nameof(ShowOverview), datetime.Date);
+            return View();
         }
 
         /* Given date, show guest-information (expected amount, checked-in amount, etc.) */
-        public IActionResult ShowOverview(DateTime datetime)
+        public IActionResult ShowOverview(DateTime dateTime)
         {
-            var expectedGuestsInfo = _context.Set<ExpectedGuests>().Find(datetime.Date);
-            var checkedInEntries = _context.Set<CheckedIn>().Where(c => c.Date == datetime.Date).ToList();
-            
-            var vm = new KitchenOverviewViewModel(expectedGuestsInfo, checkedInEntries);
+            var expectedGuestsInfo = _context.Set<ExpectedGuests>().Find(dateTime.Date);
+            var checkedInEntries = _context.Set<CheckedIn>().Where(c => c.Date == dateTime.Date).ToList();
 
-            return View(vm);
+            if (expectedGuestsInfo != null && checkedInEntries.Count > 0)
+            {
+                var vm = new KitchenOverviewViewModel(expectedGuestsInfo, checkedInEntries);
+
+                return View(vm);
+            }
+
+            return RedirectToAction(nameof(Index));
         }
     }
 }

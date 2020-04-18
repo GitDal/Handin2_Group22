@@ -57,9 +57,11 @@ namespace Morgenmadsbuffeten.Controllers
         }
 
         /* List of room-numbers (adults, children) that has eaten breakfast (this day) */
-        public IActionResult ListRestaurantCheckIns(DateTime datetime)
+        public IActionResult ListRestaurantCheckIns()
         {
-            var restaurantCheckIns = _context.Set<ExpectedGuests>().Where(e => e.Date == datetime.Date).ToList();
+            DateTime date = DateTime.Now.Date;
+
+            var restaurantCheckIns = _context.Set<CheckedIn>().Where(c => c.Date == date).ToList();
 
             return View(restaurantCheckIns);
         }
