@@ -69,10 +69,12 @@ namespace Morgenmadsbuffeten
             app.UseAuthentication();
             app.UseAuthorization();
 
+            /*
             Seeder.SeedAdmin(userManager);
             Seeder.SeedServer(userManager);
             Seeder.SeedCook(userManager);
             Seeder.SeedReceptionist(userManager);
+            */
 
             app.UseEndpoints(endpoints =>
             {
