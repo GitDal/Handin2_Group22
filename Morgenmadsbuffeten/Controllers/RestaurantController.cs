@@ -32,15 +32,16 @@ namespace Morgenmadsbuffeten.Controllers
             return View(vm);
         }
 
-        /*
+
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> CheckInGuests(CheckedIn newEntry)
         {
             if (ModelState.IsValid)
             {
                 var result = _context.AddAsync<CheckedIn>(newEntry);
                 await result;
-                
+
                 if (result.IsCompletedSuccessfully)
                 {
                     return RedirectToAction(nameof(Index));
@@ -49,6 +50,6 @@ namespace Morgenmadsbuffeten.Controllers
 
             return View();
         }
-        */
+
     }
 }
