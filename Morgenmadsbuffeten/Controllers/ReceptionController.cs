@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Morgenmadsbuffeten.Data;
 using Morgenmadsbuffeten.Data.DBModels;
 
 namespace Morgenmadsbuffeten.Controllers
@@ -13,9 +15,9 @@ namespace Morgenmadsbuffeten.Controllers
     //[Authorize("IsReceptionist")]
     public class ReceptionController : Controller
     {
-        private readonly DbContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public ReceptionController(DbContext context)
+        public ReceptionController(ApplicationDbContext context)
         {
             _context = context;
         }
