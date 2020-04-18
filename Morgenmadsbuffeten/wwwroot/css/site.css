@@ -76,6 +76,22 @@ body {
     height: auto;
 }
 
+.hotelSite {
+
+}
+
+.btn-hotel {
+    color: #fff;
+    background-color: #ff9f00;
+    border-color: #f09600;
+}
+
+    .btn-hotel:hover {
+        color: #fff;
+        background-color: #ffac22;
+        border-color: #ff9f00;
+    }
+
 .center-block {
     display: block;
     margin-left: auto !important;
