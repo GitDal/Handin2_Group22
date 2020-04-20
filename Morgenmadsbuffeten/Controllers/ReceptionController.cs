@@ -31,6 +31,7 @@ namespace Morgenmadsbuffeten.Controllers
         public IActionResult IndicateExpectedGuests()
         {
             var vm = new ExpectedGuests();
+            vm.Date = DateTime.Now; //Default today
 
             return View(vm);
         }
