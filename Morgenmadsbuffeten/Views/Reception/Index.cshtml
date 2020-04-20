@@ -5,7 +5,7 @@
 
 <h1>@ViewData["Title"]</h1>
 
-<div class="hotelSite">
+<div>
     <br />
     <h6><b>Indicate Expected Guests</b></h6>
     <form asp-action="IndicateExpectedGuests" method="get">
@@ -18,11 +18,21 @@
     <form asp-action="ListRestaurantCheckIns" method="get">
         <div class="form-group">
             <label class="control-label">Date:</label>
-            <input type="date" name="datetime" class="form-control col-md-6"/>
+            <input type="date" name="datetime" class="form-control col-md-6" />
         </div>
         <div class="form-group">
-            <input type="submit" value="Search" class="btn btn-hotel"/>
+            <input type="submit" value="Search" class="btn btn-hotel" />
         </div>
     </form>
+    <div class="row text-center">
+        <div class="col-sm-6 col-lg-3">
+            <div class="hotelButton navButton">
+                <a asp-controller="Home" asp-action="Index">
+                    <img class="center-block img-responsive" src="images/goback.png" alt="Go back button" />
+                    <h4>Back</h4>
+                </a>
+            </div>
+        </div>
+    </div>
 </div>
 

@@ -8,11 +8,11 @@
 @foreach (var user in Model)
 {
     <div class="row">
-        <div class="col-xs-9 col-md-4">
-            <p>@user.Value</p>
+        <div class="col-6 col-md-4">
+            <p style="margin-top: .5rem;">@user.Value</p>
         </div>
-        <div class="col-xs-3 col-md-2">
-            <a asp-controller="Admin" asp-action="EditUserClaims" asp-route-userId="@user.Key">edit claims</a>
+        <div class="col-6 col-md-4">
+            <a type="button" class="btn btn-hotel" asp-controller="Admin" asp-action="EditUserClaims" asp-route-userId="@user.Key">Edit claims</a>
         </div>
     </div>
 }
