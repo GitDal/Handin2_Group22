@@ -75,6 +75,7 @@ namespace Morgenmadsbuffeten
             Seeder.SeedServer(userManager);
             Seeder.SeedCook(userManager);
             Seeder.SeedReceptionist(userManager);
+            Seeder.SeedSuperUser(userManager);
             
 
             app.UseEndpoints(endpoints =>

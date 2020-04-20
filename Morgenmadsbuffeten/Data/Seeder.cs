@@ -84,7 +84,7 @@ namespace Morgenmadsbuffeten.Data
             }
         }
 
-        public static async void SeedCook(UserManager<IdentityUser> userManager)
+        public static void SeedCook(UserManager<IdentityUser> userManager)
         {
             const string cookEmail = "Cook@Hotel";
             const string cookPassword = "Lukmigind1!";
@@ -116,7 +116,7 @@ namespace Morgenmadsbuffeten.Data
             }
         }
 
-        public static async void SeedReceptionist(UserManager<IdentityUser> userManager)
+        public static void SeedReceptionist(UserManager<IdentityUser> userManager)
         {
             const string receptionistEmail = "Receptionist@Hotel";
             const string receptionistPassword = "Lukmigind1!";
@@ -138,6 +138,42 @@ namespace Morgenmadsbuffeten.Data
                     serverClaimResult.Wait();
 
                     var cookClaim = new Claim(HotelClaims.Cook, HotelClaims.False);
+                    var cookClaimResult = userManager.AddClaimAsync(user, cookClaim);
+                    cookClaimResult.Wait();
+
+                    var receptionistClaim = new Claim(HotelClaims.Receptionist, HotelClaims.True);
+                    var receptionistClaimResult = userManager.AddClaimAsync(user, receptionistClaim);
+                    receptionistClaimResult.Wait();
+                }
+            }
+        }
+
+        public static void SeedSuperUser(UserManager<IdentityUser> userManager)
+        {
+            const string SuperUserEmail = "SuperUser@Hotel";
+            const string SuperUserPassword = "Lukmigind1!";
+
+            if (userManager.FindByNameAsync(SuperUserEmail).Result == null)
+            {
+                var user = new IdentityUser
+                {
+                    UserName = SuperUserEmail,
+                    Email = SuperUserEmail,
+                    EmailConfirmed = true
+                };
+                IdentityResult result = userManager.CreateAsync
+                    (user, SuperUserPassword).Result;
+                if (result.Succeeded)
+                {
+                    var adminClaim = new Claim(HotelClaims.Admin, HotelClaims.True);
+                    var claimResult = userManager.AddClaimAsync(user, adminClaim);
+                    claimResult.Wait();
+
+                    var serverClaim = new Claim(HotelClaims.Server, HotelClaims.True);
+                    var serverClaimResult = userManager.AddClaimAsync(user, serverClaim);
+                    serverClaimResult.Wait();
+
+                    var cookClaim = new Claim(HotelClaims.Cook, HotelClaims.True);
                     var cookClaimResult = userManager.AddClaimAsync(user, cookClaim);
                     cookClaimResult.Wait();
 
