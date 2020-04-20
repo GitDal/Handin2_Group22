@@ -77,7 +77,7 @@ body {
 }
 
 .hotelSite-header{
-    padding: 5% 0;
+    padding: 5% 0 8%;
 }
 
 .btn-hotel {
@@ -120,6 +120,10 @@ body {
 .hotelButton a, .hotelButton a:hover {
     text-decoration: none;
     color: #000;
+}
+
+.navButton {
+    padding: 5%;
 }
 
 .navButton img{
