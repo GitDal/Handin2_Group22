@@ -25,7 +25,7 @@ namespace Morgenmadsbuffeten.Controllers
             return View();
         }
 
-        /* Check-in guests for breakfast (room-number, amount of adults & children)*/
+        /* Check-in guests for breakfast (room-number, amount of adults & children) - today*/
         public IActionResult CheckInGuests()
         {
             var vm = new CheckedIn();
@@ -40,7 +40,7 @@ namespace Morgenmadsbuffeten.Controllers
         {
             if (ModelState.IsValid)
             {
-                newEntry.Date = DateTime.Now.Date;
+                newEntry.Date = DateTime.Now.Date; //Check-In is today
 
                 var result = _context.AddAsync<CheckedIn>(newEntry);
                 await result;

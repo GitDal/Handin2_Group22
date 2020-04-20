@@ -39,7 +39,7 @@ namespace Morgenmadsbuffeten.Controllers
                 return View(vm);
             }
 
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Index)); //Error (No information found for the submitted date)
         }
     }
 }
