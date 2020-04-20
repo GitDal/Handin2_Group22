@@ -27,19 +27,14 @@ namespace Morgenmadsbuffeten.Controllers
         }
 
         /* Given date, show guest-information (expected amount, checked-in amount, etc.) */
-        public IActionResult ShowOverview(DateTime dateTime)
+        public async Task<IActionResult> ShowOverview(DateTime dateTime)
         {
-            var expectedGuestsInfo = _context.Set<ExpectedGuests>().Find(dateTime.Date);
-            var checkedInEntries = _context.Set<CheckedIn>().Where(c => c.Date == dateTime.Date).ToList();
+            var expectedGuestsInfo = await _context.Set<ExpectedGuests>().FindAsync(dateTime.Date);
+            var checkedInEntries = await _context.Set<CheckedIn>().Where(c => c.Date == dateTime.Date).ToListAsync();
 
-            if (expectedGuestsInfo != null && checkedInEntries.Count > 0)
-            {
-                var vm = new KitchenOverviewViewModel(expectedGuestsInfo, checkedInEntries);
+            var vm = new KitchenOverviewViewModel(expectedGuestsInfo, checkedInEntries, dateTime.Date);
 
-                return View(vm);
-            }
-
-            return RedirectToAction(nameof(Index)); //Error (No information found for the submitted date)
+            return View(vm);
         }
     }
 }

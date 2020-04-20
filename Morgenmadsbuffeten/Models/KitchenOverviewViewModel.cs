@@ -9,9 +9,20 @@ namespace Morgenmadsbuffeten.Models
 {
     public class KitchenOverviewViewModel
     {
-        public KitchenOverviewViewModel(ExpectedGuests expectedGuestsInfo, List<CheckedIn> checkedInEntries)
+        public KitchenOverviewViewModel(ExpectedGuests expectedGuestsInfo, List<CheckedIn> checkedInEntries, DateTime date)
         {
-            ExpectedGuests = expectedGuestsInfo;
+            if(expectedGuestsInfo != null)
+                ExpectedGuests = expectedGuestsInfo;
+            else
+                ExpectedGuests = new ExpectedGuests()
+                {
+                    Date = date,
+                    NumberOfAdults = 0,
+                    NumberOfChildren = 0,
+                    TotalAmount = 0
+                };
+
+            Date = date;
 
             // Analyse data
             int adultsCheckedIn = 0;
@@ -32,11 +43,13 @@ namespace Morgenmadsbuffeten.Models
             };
             NotCheckedInAmount = new GuestAmount()
             {
-                TotalAmount = (expectedGuestsInfo.TotalAmount - totalCheckedIn),
-                AdultsAmount = (expectedGuestsInfo.NumberOfAdults - adultsCheckedIn),
-                ChildrenAmount = (expectedGuestsInfo.NumberOfChildren - childrenCheckedIn)
+                TotalAmount = (ExpectedGuests.TotalAmount - totalCheckedIn),
+                AdultsAmount = (ExpectedGuests.NumberOfAdults - adultsCheckedIn),
+                ChildrenAmount = (ExpectedGuests.NumberOfChildren - childrenCheckedIn)
             };
         }
+
+        public DateTime Date { get; set; }
 
         public ExpectedGuests ExpectedGuests { get; set; }
 

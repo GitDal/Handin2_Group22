@@ -1,16 +1,17 @@
 ﻿@model Morgenmadsbuffeten.Models.KitchenOverviewViewModel
 
 @{
-    ViewData["Title"] = "ShowOverview";
+    ViewData["Title"] = "Show Overview";
     var expected = Model.ExpectedGuests;
     var checkedIn = Model.CheckedInAmount;
     var notCheckedIn = Model.NotCheckedInAmount;
-    var date = expected.Date;
 }
 
-<h1>ShowOverview</h1>
+<h1>Kitchen - Overview</h1>
+<p><b>Date: </b><span>@Model.Date.ToString("MM/dd/yyyy")</span></p>
 
 @* Expected amounts *@
+<b>Expected Customers (Amount)</b>
 <table class="table table-bordered table-striped">
     <thead>
     <tr>
@@ -20,15 +21,16 @@
     </tr>
     </thead>
     <tbody>
-        <tr>
-            <td>@expected.TotalAmount</td>
-            <td>@expected.NumberOfAdults</td>
-            <td>@expected.NumberOfChildren</td>
-        </tr>
+    <tr>
+        <td>@expected.TotalAmount</td>
+        <td>@expected.NumberOfAdults</td>
+        <td>@expected.NumberOfChildren</td>
+    </tr>
     </tbody>
 </table>
 
 @* Checked-In amounts *@
+<b>Checked-In Customers (Amount)</b>
 <table class="table table-bordered table-striped">
     <thead>
     <tr>
@@ -47,6 +49,7 @@
 </table>
 
 @* Not Checked-In amounts *@
+<b>Not Checked-In Customers (Amount)</b>
 <table class="table table-bordered table-striped">
     <thead>
     <tr>
@@ -67,7 +70,7 @@
 <div class="col-sm-6 col-lg-3">
     <div class="hotelButton">
         <a asp-action="Index">
-            <img class="center-block img-responsive" src="images/kitchen.png" />
+            <img class="center-block img-responsive" src="~/images/goback.png" alt="GoBackButton" />
             <h4>Back</h4>
         </a>
     </div>
@@ -75,8 +78,8 @@
 
 <div class="col-sm-6 col-lg-3">
     <div class="hotelButton">
-        <a asp-action="ShowOverview" asp-route-dateTime="@date.ToString("MM/dd/yyyy HH:mm")">
-            <img class="center-block img-responsive" src="images/kitchen.png" />
+        <a asp-action="ShowOverview" asp-route-dateTime="@Model.Date.ToString("MM/dd/yyyy")">
+            <img class="center-block img-responsive" src="~/images/reload.png" alt="ReloadButton"/>
             <h4>Update</h4>
         </a>
     </div>
