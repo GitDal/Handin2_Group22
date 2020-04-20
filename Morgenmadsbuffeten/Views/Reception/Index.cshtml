@@ -7,28 +7,34 @@
 <hr />
 <div>
     <br />
-    <div class="row">
-        <div class="col-lg-6">
-            <h4><b>Indicate Expected Guests</b></h4>
-            <form asp-action="IndicateExpectedGuests" method="get">
-                <div class="form-group">
-                    <p>Indicate expected number of guests at breakfast</p>
-                    <p>Kitchen staff will need this everyday</p>
-                    <input type="submit" value="Indicate" class="btn btn-hotel"/>
+    <div class="text-center">
+        <div class="row">
+            <div class="col-sm-6 col-lg-3">
+                <div class="hotelButton">
+                    <a asp-controller="Reception" asp-action="IndicateExpectedGuests">
+                        <img class="center-block img-responsive" src="images/calendar.png" alt="Indicate button" />
+                        <h4>Indicate Expected Guests</h4>
+                    </a>
                 </div>
-            </form>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <div class="hotelButton">
+                    <a asp-controller="Reception" asp-action="ListRestaurantCheckIns">
+                        <img class="center-block img-responsive" src="images/list.png" alt="List button" />
+                        <h4>List Check Ins Today</h4>
+                    </a>
+                </div>
+            </div>
         </div>
-        <div class="col-lg-6">
-            <h4><b>List Restaurant Check Ins</b></h4>
-            <form asp-action="ListRestaurantCheckIns" method="get">
-                <div class="form-group">
-                    <label class="control-label">Date:</label>
-                    <input type="date" name="datetime" class="form-control col-lg-6" />
+        <div class="row">
+            <div class="col-sm-6 col-lg-3">
+                <div class="hotelButton navButton">
+                    <a asp-controller="Home" asp-action="Index">
+                        <img class="center-block img-responsive" src="images/goback.png" alt="Go back button" />
+                        <h4>Back</h4>
+                    </a>
                 </div>
-                <div class="form-group">
-                    <input type="submit" value="Search" class="btn btn-hotel" />
-                </div>
-            </form>
+            </div>
         </div>
     </div>
 </div>
