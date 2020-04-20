@@ -12,7 +12,7 @@ using Morgenmadsbuffeten.Data.DBModels;
 namespace Morgenmadsbuffeten.Controllers
 {
     /* Employee - Receptionist : Uses PC */
-    //[Authorize("IsReceptionist")]
+    [Authorize("IsReceptionist")]
     public class ReceptionController : Controller
     {
         private readonly ApplicationDbContext _context;

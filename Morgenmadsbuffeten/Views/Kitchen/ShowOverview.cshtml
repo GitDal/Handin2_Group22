@@ -10,6 +10,8 @@
 <h1>Kitchen - Overview</h1>
 <p><b>Date: </b><span>@Model.Date.ToString("MM/dd/yyyy")</span></p>
 
+<hr />
+
 @* Expected amounts *@
 <b>Expected Customers (Amount)</b>
 <table class="table table-bordered table-striped">
@@ -67,20 +69,22 @@
     </tbody>
 </table>
 
-<div class="col-sm-6 col-lg-3">
-    <div class="hotelButton">
-        <a asp-action="Index">
-            <img class="center-block img-responsive" src="~/images/goback.png" alt="GoBackButton" />
-            <h4>Back</h4>
-        </a>
+<div class="row text-center" style="margin-top: 5%;">
+    <div class="col-sm-6 col-lg-3">
+        <div class="hotelButton navButton">
+            <a asp-action="Index">
+                <img class="center-block img-responsive" src="~/images/goback.png" alt="GoBackButton" />
+                <h4>Back</h4>
+            </a>
+        </div>
     </div>
-</div>
 
-<div class="col-sm-6 col-lg-3">
-    <div class="hotelButton">
-        <a asp-action="ShowOverview" asp-route-dateTime="@Model.Date.ToString("MM/dd/yyyy")">
-            <img class="center-block img-responsive" src="~/images/reload.png" alt="ReloadButton"/>
-            <h4>Update</h4>
-        </a>
+    <div class="col-sm-6 col-lg-3">
+        <div class="hotelButton navButton">
+            <a asp-action="ShowOverview" asp-route-dateTime="@Model.Date.ToString("MM/dd/yyyy")">
+                <img class="center-block img-responsive" src="~/images/reload.png" alt="ReloadButton"/>
+                <h4>Update</h4>
+            </a>
+        </div>
     </div>
 </div>

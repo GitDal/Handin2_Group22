@@ -40,9 +40,9 @@ namespace Morgenmadsbuffeten
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("IsAdmin", policyBuilder => policyBuilder.RequireClaim(HotelClaims.Admin, HotelClaims.True));
-                options.AddPolicy("ReceptionEmployee", policyBuilder => policyBuilder.RequireClaim(HotelClaims.Receptionist, HotelClaims.True));
-                options.AddPolicy("RestaurantEmployee", policyBuilder => policyBuilder.RequireClaim(HotelClaims.Server, HotelClaims.True));
-                options.AddPolicy("KitchenEmployee", policyBuilder => policyBuilder.RequireClaim(HotelClaims.Cook, HotelClaims.True));
+                options.AddPolicy("IsReceptionist", policyBuilder => policyBuilder.RequireClaim(HotelClaims.Receptionist, HotelClaims.True));
+                options.AddPolicy("IsWaiter", policyBuilder => policyBuilder.RequireClaim(HotelClaims.Server, HotelClaims.True));
+                options.AddPolicy("IsCook", policyBuilder => policyBuilder.RequireClaim(HotelClaims.Cook, HotelClaims.True));
             });
 
             services.AddRazorPages();
@@ -70,12 +70,12 @@ namespace Morgenmadsbuffeten
             app.UseAuthentication();
             app.UseAuthorization();
 
-            /*
+            
             Seeder.SeedAdmin(userManager);
             Seeder.SeedServer(userManager);
             Seeder.SeedCook(userManager);
             Seeder.SeedReceptionist(userManager);
-            */
+            
 
             app.UseEndpoints(endpoints =>
             {

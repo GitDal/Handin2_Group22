@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Morgenmadsbuffeten.Data;
@@ -11,7 +12,7 @@ using Morgenmadsbuffeten.Models;
 namespace Morgenmadsbuffeten.Controllers
 {
     /* Employee - Chef : Uses iPad */
-    //[Authorize("IsChef")]
+    [Authorize("IsCook")]
     public class KitchenController : Controller
     {
         private readonly ApplicationDbContext _context;
