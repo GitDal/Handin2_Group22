@@ -42,7 +42,14 @@ namespace Morgenmadsbuffeten.Controllers
             if (ModelState.IsValid)
             {
                 expectedGuests.TotalAmount = expectedGuests.NumberOfAdults + expectedGuests.NumberOfChildren;
-                var task = _context.Set<ExpectedGuests>().AddAsync(expectedGuests);
+
+                var dbSet = _context.Set<ExpectedGuests>();
+                var result = dbSet.Find(expectedGuests.Date);
+
+                if (result != null)
+                    dbSet.Remove(result);
+
+                var task = dbSet.AddAsync(expectedGuests);
                 await task;
 
                 if (task.IsCompletedSuccessfully)

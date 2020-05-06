@@ -5,6 +5,11 @@
 
 <p>This assignment heavily uses mobile first in it's layout. This is seen through the rather big buttons on almost all the available sites.<br/>This means that the layout of the website is responsive and adjusts itself to whatever device is accessing it. This way the receptionist using a laptop, the server using a smartphone, and the cook/chef using an iPad, will all be able to easily navigate the site.</p>
 
+<h2>About the re-submitted assignment</h2>
+<p>This assignment has been resubmitted since it crashed whenever an authorized user tried to indicate expected guest for a day that had already received an indication of expected guest. This is because the data stored on the database has the primary key of the selected day, since we don't wish for more than one indication per day</p>
+<p>We solved the crashing of this controller through deleting the already existing indication if a user tries to indicate another expected guest amount for the same day. This way you can now overwrite an indication with a new one.</p>
+<p><b>Another Crash</b> we found in this resubmission was with the controller the restaurant uses for checking in guests from specific rooms. The exact same issue as the one mentioned above applied here, which led to the same solution being used to solve the crashing for this controller. We check if there already exists data for the specific room on the current date in our database. If data exists, we delete it, and add the new check in, thus overwriting the old check in.</p>
+
 <h2>About users</h2>
 <p>In the startup file in this project you have the option of seeding different users to the Identity database, who all have different claims, that allows them into the different sections of this website.</p>
 <p>The <b>Server</b> user is meant to be the person checking in people in the restaurant.</p>

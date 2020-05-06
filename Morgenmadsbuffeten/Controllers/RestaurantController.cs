@@ -43,10 +43,16 @@ namespace Morgenmadsbuffeten.Controllers
             {
                 newEntry.Date = DateTime.Now.Date; //Check-In is today
 
-                var result = _context.AddAsync<CheckedIn>(newEntry);
-                await result;
+                var dbSet = _context.Set<CheckedIn>();
+                var result = dbSet.Find(newEntry.RoomNumber, newEntry.Date);
 
-                if (result.IsCompletedSuccessfully)
+                if (result != null)
+                    dbSet.Remove(result);
+
+                var task = _context.AddAsync<CheckedIn>(newEntry);
+                await task;
+
+                if (task.IsCompletedSuccessfully)
                 {
                     _context.SaveChanges();
                     return RedirectToAction(nameof(Index));
